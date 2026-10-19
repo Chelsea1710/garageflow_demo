@@ -2,98 +2,559 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#132238" />
-  <title>Case G | Kehoe's Garage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#132238">
+  <title>Case G - Kehoe's Garage</title>
   <style>
-    :root{--navy:#132238;--blue:#1769aa;--sky:#eaf4fb;--green:#16845b;--amber:#f0a202;--red:#c62828;--ink:#17202a;--muted:#667085;--line:#d7dee8;--white:#fff;--shadow:0 8px 24px rgba(19,34,56,.10)}
-    *{box-sizing:border-box} body{margin:0;background:#f4f7fa;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-    button,input,select,textarea{font:inherit} button{cursor:pointer} .app{min-height:100vh;padding-bottom:84px}
-    header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:14px 16px;box-shadow:0 2px 12px #0003}
-    .header-inner{max-width:1200px;margin:auto;display:flex;align-items:center;gap:12px}.brand{min-width:0}.brand h1{font-size:1.2rem;margin:0}.brand p{font-size:.78rem;margin:3px 0 0;color:#cbd8e6}.sample-pill{margin-left:auto;background:#fff1c7;color:#6f4b00;border:1px solid #ffd46a;padding:7px 9px;border-radius:999px;font-size:.72rem;font-weight:800;white-space:nowrap}
-    main{max-width:1200px;margin:auto;padding:16px}.notice{background:#fff8df;border:1px solid #f2cf65;border-left:5px solid var(--amber);padding:11px 13px;border-radius:10px;margin-bottom:14px;font-size:.88rem}
-    .view{display:none}.view.active{display:block}.view-title{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:3px 0 14px}.view-title h2{margin:0;font-size:1.35rem}.view-title p{margin:3px 0 0;color:var(--muted);font-size:.86rem}
-    .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}.stat{background:#fff;border:1px solid var(--line);border-radius:13px;padding:13px;box-shadow:var(--shadow)}.stat strong{display:block;font-size:1.65rem}.stat span{font-size:.75rem;color:var(--muted);font-weight:700;text-transform:uppercase}.stat.ready{border-left:5px solid var(--green)}.stat.alert{border-left:5px solid var(--red)}
-    .toolbar{display:grid;gap:9px;margin-bottom:14px}.input{width:100%;min-height:48px;border:1px solid #bbc7d4;border-radius:11px;padding:11px 13px;background:white}.input:focus{outline:3px solid #1769aa30;border-color:var(--blue)}
-    .jobs{display:grid;gap:12px}.job-card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;box-shadow:var(--shadow)}.job-card.overdue{border:2px solid var(--red);box-shadow:0 0 0 3px #c6282812}.job-head{display:flex;gap:10px;justify-content:space-between;align-items:start}.job-no{font-size:.75rem;color:var(--muted);font-weight:800}.job-card h3{font-size:1.05rem;margin:3px 0}.reg{display:inline-block;background:var(--navy);color:#fff;padding:5px 8px;border-radius:6px;font-weight:900;letter-spacing:.08em;font-size:.8rem}.badge{display:inline-flex;align-items:center;padding:6px 8px;border-radius:999px;font-size:.72rem;font-weight:900;text-align:center}.b-booked{background:#e9eef5;color:#41546d}.b-progress{background:#e5f0ff;color:#075ca8}.b-parts{background:#ffe5e5;color:#9e1717}.b-ready{background:#dff6ec;color:#08744c}.b-collected{background:#ededed;color:#555}.alert-line{margin-top:10px;background:#fff0f0;color:#a51818;padding:9px;border-radius:8px;font-size:.82rem;font-weight:800}.meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}.meta div{font-size:.82rem}.meta b{display:block;color:var(--muted);font-size:.68rem;text-transform:uppercase;margin-bottom:2px}.notes{font-size:.86rem;background:#f7f9fb;padding:9px;border-radius:8px;margin:0 0 12px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.big-btn{min-height:54px;border:0;border-radius:11px;font-weight:900;padding:10px;color:#fff;background:var(--blue);box-shadow:0 3px 0 #0d4b7a}.big-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #0d4b7a}.big-btn.green{background:var(--green);box-shadow:0 3px 0 #096342}.big-btn.amber{background:#d88d00;box-shadow:0 3px 0 #9c6600}.big-btn.grey{background:#5b6675;box-shadow:0 3px 0 #404854}.small-btn{min-height:42px;border:1px solid #aebbc9;background:#fff;border-radius:9px;padding:8px 12px;font-weight:800}.danger{color:var(--red);border-color:#ebb1b1}.empty{padding:26px;text-align:center;background:#fff;border:1px dashed #aebbc9;border-radius:13px;color:var(--muted)}
-    .lookup-card{background:#fff;border:1px solid var(--line);padding:16px;border-radius:15px;box-shadow:var(--shadow);margin-bottom:14px}.lookup-row{display:grid;gap:9px}.customer-result{margin-top:15px}.customer-result h3{margin:0}.progress{display:flex;gap:4px;margin:14px 0}.step{height:8px;flex:1;background:#dce3ea;border-radius:5px}.step.done{background:var(--green)}
-    .table-wrap{overflow:auto;background:#fff;border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;padding:11px;border-bottom:1px solid var(--line);font-size:.82rem}th{background:#eaf0f6;color:#3d4b5c;text-transform:uppercase;font-size:.7rem;position:sticky;top:0}.invoice-check{width:24px;height:24px;accent-color:var(--green)}
-    .office-tools{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}.office-tools .small-btn{background:#fff}.office-tools .primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-    nav{position:fixed;bottom:0;left:0;right:0;z-index:30;display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-top:1px solid var(--line);padding:7px max(8px,env(safe-area-inset-right)) calc(7px + env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left));box-shadow:0 -4px 18px #13223818}.nav-btn{min-height:58px;border:0;background:transparent;border-radius:10px;color:#5c6978;font-weight:800;font-size:.76rem}.nav-btn span{display:block;font-size:1.25rem;margin-bottom:2px}.nav-btn.active{background:#e8f2fb;color:#075b9c}
-    .modal-backdrop{display:none;position:fixed;inset:0;background:#0009;z-index:50;padding:18px;align-items:center;justify-content:center}.modal-backdrop.open{display:flex}.modal{background:#fff;width:min(600px,100%);max-height:92vh;overflow:auto;border-radius:16px;padding:18px}.modal h2{margin-top:0}.form-grid{display:grid;gap:10px}.form-grid label{font-size:.78rem;font-weight:800}.form-grid label .input{display:block;margin-top:4px}.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:15px}
-    .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:#142336;color:white;padding:11px 16px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s;z-index:80;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    @media(min-width:700px){.stats{grid-template-columns:repeat(4,1fr)}.toolbar{grid-template-columns:2fr 1fr}.jobs{grid-template-columns:repeat(2,1fr)}.lookup-row{grid-template-columns:1fr auto}.lookup-row button{min-width:140px}.form-grid{grid-template-columns:1fr 1fr}.form-grid .wide{grid-column:1/-1}}
-    @media(min-width:1050px){.jobs{grid-template-columns:repeat(3,1fr)}nav{position:sticky;top:75px;max-width:1200px;margin:0 auto 14px;border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:none}.app{padding-bottom:0}.nav-btn{min-height:48px}.nav-btn span{display:inline;margin-right:7px}}
+    :root {
+      --navy: #132238;
+      --blue: #1769aa;
+      --green: #16845b;
+      --amber: #e79a00;
+      --red: #c62828;
+      --ink: #17202a;
+      --muted: #667085;
+      --line: #d7dee8;
+      --shadow: 0 8px 24px rgba(19,34,56,.10);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #f4f7fa;
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    .app { min-height: 100vh; padding-bottom: 88px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--navy);
+      color: white;
+      padding: 14px 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand { min-width: 0; }
+    .brand h1 { font-size: 1.2rem; margin: 0; }
+    .brand p { font-size: .78rem; margin: 3px 0 0; color: #cbd8e6; }
+
+    .sample-pill {
+      margin-left: auto;
+      background: #fff1c7;
+      color: #6f4b00;
+      border: 1px solid #ffd46a;
+      padding: 7px 9px;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    main { max-width: 1200px; margin: auto; padding: 16px; }
+
+    .notice {
+      background: #fff8df;
+      border: 1px solid #f2cf65;
+      border-left: 5px solid #f0a202;
+      padding: 11px 13px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      font-size: .88rem;
+    }
+
+    .view { display: none; }
+    .view.active { display: block; }
+
+    .view-title { margin: 3px 0 14px; }
+    .view-title h2 { margin: 0; font-size: 1.35rem; }
+    .view-title p { margin: 3px 0 0; color: var(--muted); font-size: .86rem; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 13px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong { display: block; font-size: 1.65rem; }
+    .stat span { font-size: .75rem; color: var(--muted); font-weight: 700; text-transform: uppercase; }
+    .stat.ready { border-left: 5px solid var(--green); }
+    .stat.alert { border-left: 5px solid var(--red); }
+
+    .toolbar { display: grid; gap: 9px; margin-bottom: 14px; }
+
+    .input {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid #bbc7d4;
+      border-radius: 11px;
+      padding: 11px 13px;
+      background: white;
+    }
+
+    .input:focus { outline: 3px solid rgba(23,105,170,.18); border-color: var(--blue); }
+
+    .jobs { display: grid; gap: 12px; }
+
+    .job-card {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px;
+      box-shadow: var(--shadow);
+    }
+
+    .job-card.overdue { border: 2px solid var(--red); }
+    .job-head { display: flex; gap: 10px; justify-content: space-between; align-items: start; }
+    .job-no { font-size: .75rem; color: var(--muted); font-weight: 800; }
+    .job-card h3 { font-size: 1.05rem; margin: 3px 0; }
+
+    .reg {
+      display: inline-block;
+      background: var(--navy);
+      color: white;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      font-size: .8rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .b-booked { background: #e9eef5; color: #41546d; }
+    .b-progress { background: #e5f0ff; color: #075ca8; }
+    .b-parts { background: #ffe5e5; color: #9e1717; }
+    .b-ready { background: #dff6ec; color: #08744c; }
+    .b-collected { background: #ededed; color: #555; }
+
+    .alert-line {
+      margin-top: 10px;
+      background: #fff0f0;
+      color: #a51818;
+      padding: 9px;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+
+    .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+    .meta div { font-size: .82rem; }
+    .meta b { display: block; color: var(--muted); font-size: .68rem; text-transform: uppercase; margin-bottom: 2px; }
+
+    .notes { font-size: .86rem; background: #f7f9fb; padding: 9px; border-radius: 8px; margin: 0 0 12px; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .big-btn {
+      min-height: 58px;
+      border: 0;
+      border-radius: 11px;
+      font-weight: 900;
+      padding: 10px;
+      color: white;
+      background: var(--blue);
+      box-shadow: 0 4px 0 #0d4b7a;
+    }
+
+    .big-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #0d4b7a; }
+    .big-btn.green { background: var(--green); box-shadow: 0 4px 0 #096342; }
+    .big-btn.amber { background: var(--amber); box-shadow: 0 4px 0 #a86e00; }
+    .big-btn.grey { background: #5b6675; box-shadow: 0 4px 0 #404854; }
+
+    .small-btn {
+      min-height: 42px;
+      border: 1px solid #aebbc9;
+      background: white;
+      border-radius: 9px;
+      padding: 8px 12px;
+      font-weight: 800;
+    }
+
+    .danger { color: var(--red); border-color: #ebb1b1; }
+    .empty { padding: 26px; text-align: center; background: white; border: 1px dashed #aebbc9; border-radius: 13px; color: var(--muted); }
+
+    .lookup-card { background: white; border: 1px solid var(--line); padding: 16px; border-radius: 15px; box-shadow: var(--shadow); }
+    .lookup-row { display: grid; gap: 9px; }
+    .customer-result { margin-top: 15px; }
+    .customer-result h3 { margin: 0; }
+    .progress { display: flex; gap: 4px; margin: 14px 0; }
+    .step { height: 8px; flex: 1; background: #dce3ea; border-radius: 5px; }
+    .step.done { background: var(--green); }
+
+    .table-wrap { overflow: auto; background: white; border: 1px solid var(--line); border-radius: 13px; box-shadow: var(--shadow); }
+    table { width: 100%; border-collapse: collapse; min-width: 760px; }
+    th, td { text-align: left; padding: 11px; border-bottom: 1px solid var(--line); font-size: .82rem; }
+    th { background: #eaf0f6; color: #3d4b5c; text-transform: uppercase; font-size: .7rem; }
+    .invoice-check { width: 24px; height: 24px; accent-color: var(--green); }
+    .office-tools { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+    .office-tools .primary { background: var(--blue); color: white; border-color: var(--blue); }
+
+    nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: white;
+      border-top: 1px solid var(--line);
+      padding: 7px 8px calc(7px + env(safe-area-inset-bottom));
+      box-shadow: 0 -4px 18px rgba(19,34,56,.1);
+    }
+
+    .nav-btn {
+      min-height: 62px;
+      border: 0;
+      background: transparent;
+      border-radius: 10px;
+      color: #5c6978;
+      font-weight: 800;
+      font-size: .76rem;
+    }
+
+    .nav-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      margin: 0 auto 3px;
+      border: 2px solid currentColor;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .nav-btn.active { background: #e8f2fb; color: #075b9c; }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.6);
+      z-index: 50;
+      padding: 18px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-backdrop.open { display: flex; }
+    .modal { background: white; width: min(600px,100%); max-height: 92vh; overflow: auto; border-radius: 16px; padding: 18px; }
+    .modal h2 { margin-top: 0; }
+    .form-grid { display: grid; gap: 10px; }
+    .form-grid label { font-size: .78rem; font-weight: 800; }
+    .form-grid label .input { display: block; margin-top: 4px; }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 15px; }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 96px;
+      transform: translateX(-50%) translateY(20px);
+      background: #142336;
+      color: white;
+      padding: 11px 16px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s;
+      z-index: 80;
+      white-space: nowrap;
+    }
+
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (min-width: 700px) {
+      .stats { grid-template-columns: repeat(4,1fr); }
+      .toolbar { grid-template-columns: 2fr 1fr; }
+      .jobs { grid-template-columns: repeat(2,1fr); }
+      .lookup-row { grid-template-columns: 1fr auto; }
+      .lookup-row button { min-width: 140px; }
+      .form-grid { grid-template-columns: 1fr 1fr; }
+      .form-grid .wide { grid-column: 1 / -1; }
+    }
+
+    @media (min-width: 1050px) {
+      .jobs { grid-template-columns: repeat(3,1fr); }
+      nav { position: sticky; top: 75px; max-width: 1200px; margin: 0 auto 14px; border: 1px solid var(--line); border-radius: 12px; padding: 6px; box-shadow: none; }
+      .app { padding-bottom: 0; }
+      .nav-btn { min-height: 52px; }
+      .nav-icon { display: inline-flex; margin: 0 8px 0 0; width: 26px; height: 26px; }
+    }
   </style>
 </head>
 <body>
 <div class="app">
-<header><div class="header-inner"><div class="brand"><h1>Case G · Kehoe's Garage</h1><p>Garage management dashboard</p></div><div class="sample-pill">SAMPLE DATA ONLY</div></div></header>
-<nav aria-label="Main views">
-  <button class="nav-btn active" data-view="workshop"><span class = "nav-icon">W</span>Workshop</button>
-  <button class="nav-btn" data-view="customer"><span class = "nav-icon">C</span>Customer</button>
-  <button class="nav-btn" data-view="office"><span class = "nav-icon">O</span>Office</button>
-</nav>
-<main>
-<div class="notice"><strong>Demonstration only:</strong> all customers, vehicles, phone numbers and jobs shown are fictional sample data.</div>
-<section id="workshop" class="view active">
-  <div class="view-title"><div><h2>Workshop board</h2><p>Tap a job to update its progress.</p></div></div>
-  <div class="stats" id="stats"></div>
-  <div class="toolbar"><input id="workshopSearch" class="input" placeholder="Search job, registration, customerâ¦"><select id="statusFilter" class="input"><option value="">All statuses</option><option>Booked</option><option>In Progress</option><option>Waiting for Parts</option><option>Ready for Collection</option><option>Collected</option></select></div>
-  <div class="jobs" id="workshopJobs"></div>
-</section>
-<section id="customer" class="view">
-  <div class="view-title"><div><h2>Customer job lookup</h2><p>Enter a job number or vehicle registration.</p></div></div>
-  <div class="lookup-card"><div class="lookup-row"><input id="customerLookup" class="input" autocomplete="off" placeholder="e.g. KG-1004 or 231-D-4421"><button id="lookupBtn" class="big-btn">Find my job</button></div><div id="customerResult" class="customer-result"><div class="empty">Your sample job status will appear here.</div></div></div>
-</section>
-<section id="office" class="view">
-  <div class="view-title"><div><h2>Office overview</h2><p>Manage bookings, billing and job records.</p></div></div>
-  <div class="stats" id="officeStats"></div>
-  <div class="office-tools"><button id="addJob" class="small-btn primary">+ Add sample job</button><button id="exportJobs" class="small-btn">Export CSV</button><button id="resetData" class="small-btn danger">Reset sample data</button></div>
-  <div class="table-wrap"><table><thead><tr><th>Job</th><th>Customer / Vehicle</th><th>Status</th><th>Mechanic</th><th>Total</th><th>Invoice paid</th><th>Action</th></tr></thead><tbody id="officeBody"></tbody></table></div>
-</section>
-</main></div>
-<div class="modal-backdrop" id="modalBackdrop"><div class="modal"><h2 id="modalTitle">Add sample job</h2><form id="jobForm"><input type="hidden" id="editId"><div class="form-grid">
-<label>Job number<input id="fJobNo" class="input" required></label><label>Registration<input id="fReg" class="input" required></label><label>Customer<input id="fCustomer" class="input" required></label><label>Vehicle<input id="fVehicle" class="input" required></label><label>Service<input id="fService" class="input" required></label><label>Mechanic<input id="fMechanic" class="input" required></label><label>Status<select id="fStatus" class="input"><option>Booked</option><option>In Progress</option><option>Waiting for Parts</option><option>Ready for Collection</option><option>Collected</option></select></label><label>Total (â¬)<input id="fTotal" class="input" type="number" min="0" step=".01" required></label><label class="wide">Notes<textarea id="fNotes" class="input" rows="2"></textarea></label></div><div class="modal-actions"><button type="button" id="cancelModal" class="small-btn">Cancel</button><button class="big-btn green" type="submit">Save job</button></div></form></div></div>
+  <header>
+    <div class="header-inner">
+      <div class="brand">
+        <h1>Case G - Kehoe's Garage</h1>
+        <p>Garage management dashboard</p>
+      </div>
+      <div class="sample-pill">SAMPLE DATA ONLY</div>
+    </div>
+  </header>
+
+  <nav aria-label="Main views">
+    <button class="nav-btn active" data-view="workshop"><span class="nav-icon">W</span>Workshop</button>
+    <button class="nav-btn" data-view="customer"><span class="nav-icon">C</span>Customer</button>
+    <button class="nav-btn" data-view="office"><span class="nav-icon">O</span>Office</button>
+  </nav>
+
+  <main>
+    <div class="notice"><strong>Demonstration only:</strong> all customers, vehicles and jobs shown are fictional sample data.</div>
+
+    <section id="workshop" class="view active">
+      <div class="view-title"><h2>Workshop board</h2><p>Tap a job button to update its progress.</p></div>
+      <div class="stats" id="stats"></div>
+      <div class="toolbar">
+        <input id="workshopSearch" class="input" placeholder="Search job, registration, customer...">
+        <select id="statusFilter" class="input">
+          <option value="">All statuses</option><option>Booked</option><option>In Progress</option><option>Waiting for Parts</option><option>Ready for Collection</option><option>Collected</option>
+        </select>
+      </div>
+      <div class="jobs" id="workshopJobs"></div>
+    </section>
+
+    <section id="customer" class="view">
+      <div class="view-title"><h2>Customer job lookup</h2><p>Enter a sample job number or registration.</p></div>
+      <div class="lookup-card">
+        <div class="lookup-row">
+          <input id="customerLookup" class="input" autocomplete="off" placeholder="Example: KG-1004 or 231-D-4421">
+          <button id="lookupBtn" class="big-btn">Find my job</button>
+        </div>
+        <div id="customerResult" class="customer-result"><div class="empty">The sample job status will appear here.</div></div>
+      </div>
+    </section>
+
+    <section id="office" class="view">
+      <div class="view-title"><h2>Office overview</h2><p>Manage sample bookings, billing and job records.</p></div>
+      <div class="stats" id="officeStats"></div>
+      <div class="office-tools">
+        <button id="addJob" class="small-btn primary">Add sample job</button>
+        <button id="exportJobs" class="small-btn">Export CSV</button>
+        <button id="resetData" class="small-btn danger">Reset sample data</button>
+      </div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Job</th><th>Customer / Vehicle</th><th>Status</th><th>Mechanic</th><th>Total</th><th>Paid</th><th>Action</th></tr></thead><tbody id="officeBody"></tbody></table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h2 id="modalTitle">Add sample job</h2>
+    <form id="jobForm">
+      <input type="hidden" id="editId">
+      <div class="form-grid">
+        <label>Job number<input id="fJobNo" class="input" required></label>
+        <label>Registration<input id="fReg" class="input" required></label>
+        <label>Customer<input id="fCustomer" class="input" required></label>
+        <label>Vehicle<input id="fVehicle" class="input" required></label>
+        <label>Service<input id="fService" class="input" required></label>
+        <label>Mechanic<input id="fMechanic" class="input" required></label>
+        <label>Status<select id="fStatus" class="input"><option>Booked</option><option>In Progress</option><option>Waiting for Parts</option><option>Ready for Collection</option><option>Collected</option></select></label>
+        <label>Total (EUR)<input id="fTotal" class="input" type="number" min="0" step="0.01" required></label>
+        <label class="wide">Notes<textarea id="fNotes" class="input" rows="2"></textarea></label>
+      </div>
+      <div class="modal-actions"><button type="button" id="cancelModal" class="small-btn">Cancel</button><button class="big-btn green" type="submit">Save job</button></div>
+    </form>
+  </div>
+</div>
 <div class="toast" id="toast"></div>
+
 <script>
-const STORAGE_KEY='kehoes-garage-case-g-v1';
-const sampleJobs=[
-{id:1,jobNo:'KG-1001',reg:'191-D-2847',customer:'Aoife Brennan',vehicle:'Toyota Corolla',service:'Annual service',status:'In Progress',mechanic:'Liam',booked:'2026-10-19',partsSince:null,total:289.00,paid:false,notes:'Oil and filters approved.'},
-{id:2,jobNo:'KG-1002',reg:'162-KK-908',customer:'Conor Walsh',vehicle:'Ford Transit',service:'Brake repair',status:'Waiting for Parts',mechanic:'Marek',booked:'2026-10-16',partsSince:'2026-10-16',total:645.50,paid:false,notes:'Waiting for front calliper.'},
-{id:3,jobNo:'KG-1003',reg:'221-G-6754',customer:'Niamh Kelly',vehicle:'Volkswagen Golf',service:'NCT pre-check',status:'Ready for Collection',mechanic:'Sarah',booked:'2026-10-18',partsSince:null,total:118.00,paid:true,notes:'Customer notified by text.'},
-{id:4,jobNo:'KG-1004',reg:'231-D-4421',customer:'Eoin Murphy',vehicle:'Hyundai Tucson',service:'Tyre replacement',status:'Booked',mechanic:'Unassigned',booked:'2026-10-20',partsSince:null,total:420.00,paid:false,notes:'Four all-season tyres requested.'},
-{id:5,jobNo:'KG-1005',reg:'151-C-3320',customer:'Saoirse OâNeill',vehicle:'Nissan Qashqai',service:'Engine diagnostic',status:'Waiting for Parts',mechanic:'Liam',booked:'2026-10-14',partsSince:'2026-10-15',total:510.75,paid:false,notes:'Replacement sensor ordered.'},
-{id:6,jobNo:'KG-1006',reg:'202-WW-119',customer:'Declan Byrne',vehicle:'Skoda Octavia',service:'Clutch replacement',status:'In Progress',mechanic:'Marek',booked:'2026-10-17',partsSince:null,total:980.00,paid:false,notes:'Gearbox removed; fitting underway.'},
-{id:7,jobNo:'KG-1007',reg:'181-MH-7712',customer:'Maeve Doyle',vehicle:'Kia Sportage',service:'Battery replacement',status:'Ready for Collection',mechanic:'Sarah',booked:'2026-10-19',partsSince:null,total:195.00,paid:false,notes:'New battery fitted and tested.'},
-{id:8,jobNo:'KG-1008',reg:'142-L-558',customer:'Patrick Ryan',vehicle:'BMW 3 Series',service:'Suspension noise',status:'Collected',mechanic:'Liam',booked:'2026-10-13',partsSince:null,total:374.20,paid:true,notes:'Drop links replaced.'},
-{id:9,jobNo:'KG-1009',reg:'211-D-9033',customer:'Orla Fitzgerald',vehicle:'Renault Clio',service:'Air-conditioning service',status:'Booked',mechanic:'Sarah',booked:'2026-10-21',partsSince:null,total:149.00,paid:false,notes:'Leak test included.'}
+const STORAGE_KEY = 'kehoes-garage-case-g-ascii-v2';
+
+const sampleJobs = [
+  {id:1,jobNo:'KG-1001',reg:'191-D-2847',customer:'Aoife Brennan',vehicle:'Toyota Corolla',service:'Annual service',status:'In Progress',mechanic:'Liam',booked:'2026-10-19',partsSince:null,total:289.00,paid:false,notes:'Oil and filters approved.'},
+  {id:2,jobNo:'KG-1002',reg:'162-KK-908',customer:'Conor Walsh',vehicle:'Ford Transit',service:'Brake repair',status:'Waiting for Parts',mechanic:'Marek',booked:'2026-10-16',partsSince:'2026-10-16',total:645.50,paid:false,notes:'Waiting for front calliper.'},
+  {id:3,jobNo:'KG-1003',reg:'221-G-6754',customer:'Niamh Kelly',vehicle:'Volkswagen Golf',service:'NCT pre-check',status:'Ready for Collection',mechanic:'Sarah',booked:'2026-10-18',partsSince:null,total:118.00,paid:true,notes:'Customer notified by text.'},
+  {id:4,jobNo:'KG-1004',reg:'231-D-4421',customer:'Eoin Murphy',vehicle:'Hyundai Tucson',service:'Tyre replacement',status:'Booked',mechanic:'Unassigned',booked:'2026-10-20',partsSince:null,total:420.00,paid:false,notes:'Four all-season tyres requested.'},
+  {id:5,jobNo:'KG-1005',reg:'151-C-3320',customer:"Saoirse O'Neill",vehicle:'Nissan Qashqai',service:'Engine diagnostic',status:'Waiting for Parts',mechanic:'Liam',booked:'2026-10-14',partsSince:'2026-10-15',total:510.75,paid:false,notes:'Replacement sensor ordered.'},
+  {id:6,jobNo:'KG-1006',reg:'202-WW-119',customer:'Declan Byrne',vehicle:'Skoda Octavia',service:'Clutch replacement',status:'In Progress',mechanic:'Marek',booked:'2026-10-17',partsSince:null,total:980.00,paid:false,notes:'Gearbox removed; fitting underway.'},
+  {id:7,jobNo:'KG-1007',reg:'181-MH-7712',customer:'Maeve Doyle',vehicle:'Kia Sportage',service:'Battery replacement',status:'Ready for Collection',mechanic:'Sarah',booked:'2026-10-19',partsSince:null,total:195.00,paid:false,notes:'New battery fitted and tested.'},
+  {id:8,jobNo:'KG-1008',reg:'142-L-558',customer:'Patrick Ryan',vehicle:'BMW 3 Series',service:'Suspension noise',status:'Collected',mechanic:'Liam',booked:'2026-10-13',partsSince:null,total:374.20,paid:true,notes:'Drop links replaced.'},
+  {id:9,jobNo:'KG-1009',reg:'211-D-9033',customer:'Orla Fitzgerald',vehicle:'Renault Clio',service:'Air-conditioning service',status:'Booked',mechanic:'Sarah',booked:'2026-10-21',partsSince:null,total:149.00,paid:false,notes:'Leak test included.'}
 ];
-let jobs=loadJobs();
-function loadJobs(){try{const saved=localStorage.getItem(STORAGE_KEY);return saved?JSON.parse(saved):structuredClone(sampleJobs)}catch(e){return structuredClone(sampleJobs)}}
-function saveJobs(message){localStorage.setItem(STORAGE_KEY,JSON.stringify(jobs));renderAll();if(message)showToast(message)}
-function daysWaiting(job){if(!job.partsSince)return 0;const start=new Date(job.partsSince+'T12:00:00');const now=new Date();return Math.max(0,Math.floor((now-start)/86400000))}
-function isPartsAlert(j){return j.status==='Waiting for Parts'&&daysWaiting(j)>2}
-function esc(v){return String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
-function badgeClass(status){return {'Booked':'b-booked','In Progress':'b-progress','Waiting for Parts':'b-parts','Ready for Collection':'b-ready','Collected':'b-collected'}[status]||'b-booked'}
-function statsMarkup(){const active=jobs.filter(j=>j.status!=='Collected').length,ready=jobs.filter(j=>j.status==='Ready for Collection').length,alerts=jobs.filter(isPartsAlert).length,booked=jobs.filter(j=>j.status==='Booked').length;return `<div class="stat"><strong>${active}</strong><span>Active jobs</span></div><div class="stat ready"><strong>${ready}</strong><span>Ready for collection</span></div><div class="stat alert"><strong>${alerts}</strong><span>Parts alerts &gt; 2 days</span></div><div class="stat"><strong>${booked}</strong><span>Booked</span></div>`}
-function renderWorkshop(){document.getElementById('stats').innerHTML=statsMarkup();const q=document.getElementById('workshopSearch').value.trim().toLowerCase(),f=document.getElementById('statusFilter').value;const list=jobs.filter(j=>(!f||j.status===f)&&(!q||[j.jobNo,j.reg,j.customer,j.vehicle,j.service].join(' ').toLowerCase().includes(q)));document.getElementById('workshopJobs').innerHTML=list.length?list.map(jobCard).join(''):'<div class="empty">No jobs match this search.</div>'}
-function jobCard(j){const wait=daysWaiting(j),alert=isPartsAlert(j);return `<article class="job-card ${alert?'overdue':''}"><div class="job-head"><div><span class="job-no">${esc(j.jobNo)}</span><h3>${esc(j.service)}</h3><span class="reg">${esc(j.reg)}</span></div><span class="badge ${badgeClass(j.status)}">${esc(j.status)}</span></div>${alert?`<div class="alert-line">â  PARTS WAITING ${wait} DAYS Â· ACTION REQUIRED</div>`:''}<div class="meta"><div><b>Customer</b>${esc(j.customer)}</div><div><b>Vehicle</b>${esc(j.vehicle)}</div><div><b>Mechanic</b>${esc(j.mechanic)}</div><div><b>Booked</b>${esc(j.booked)}</div></div><p class="notes">${esc(j.notes)}</p><div class="actions">${workshopActions(j)}</div></article>`}
-function workshopActions(j) {if (j.status === 'Booked')return ` <button class="big-btn" onclick="setStatus(${j.id},'In Progress')">Start job</button> <button class="bigbtn amber" onclick="setStatus(${j.id},'Waiting for Parts')"> Wait for parts</button>`;if (j.status === 'In Progress')return `<button class="big-btn green" onclick="setStatus(${j.id},'Ready for Collection')">Mark ready</button><button class="big-btn amber" onclick="setStatus(${j.id},'Waiting for Parts')>Wait for parts </button>`;if (j.status === 'Waiting for Parts')return `<button class="big-btn" onclick="setStatus(${j.id},'In Progress')">Parts arrived</button><button class="big-btn green" onclick="setStatus(${j.id},'Ready for Collection')">Mark ready</button>`;if (j.status === 'Ready for Collection')return `<button class="big-btn green" onclick="setStatus(${j.id},'Collected')">Mark collected</button><button class="big-btn grey" onclick="setStatus(${j.id},'In Progress')">Return to job</button>`;return `<button class="big-btn grey" onclick="setStatus(${j.id},'In Progress')">Reopen job</button><button class="big-btn" onclick="openEdit(${j.id})">Edit details</button> `;
+
+let jobs = loadJobs();
+
+function cloneSamples() { return JSON.parse(JSON.stringify(sampleJobs)); }
+function loadJobs() { try { const saved = localStorage.getItem(STORAGE_KEY); return saved ? JSON.parse(saved) : cloneSamples(); } catch (error) { return cloneSamples(); } }
+function saveJobs(message) { localStorage.setItem(STORAGE_KEY, JSON.stringify(jobs)); renderAll(); if (message) showToast(message); }
+function daysWaiting(job) { if (!job.partsSince) return 0; const start = new Date(job.partsSince + 'T12:00:00'); return Math.max(0, Math.floor((new Date() - start) / 86400000)); }
+function isPartsAlert(job) { return job.status === 'Waiting for Parts' && daysWaiting(job) > 2; }
+function esc(value) { return String(value == null ? '' : value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function badgeClass(status) { return {'Booked':'b-booked','In Progress':'b-progress','Waiting for Parts':'b-parts','Ready for Collection':'b-ready','Collected':'b-collected'}[status] || 'b-booked'; }
+
+function statsMarkup() {
+  const active = jobs.filter(j => j.status !== 'Collected').length;
+  const ready = jobs.filter(j => j.status === 'Ready for Collection').length;
+  const alerts = jobs.filter(isPartsAlert).length;
+  const booked = jobs.filter(j => j.status === 'Booked').length;
+  return '<div class="stat"><strong>' + active + '</strong><span>Active jobs</span></div>' +
+    '<div class="stat ready"><strong>' + ready + '</strong><span>Ready for collection</span></div>' +
+    '<div class="stat alert"><strong>' + alerts + '</strong><span>Parts alerts over 2 days</span></div>' +
+    '<div class="stat"><strong>' + booked + '</strong><span>Booked</span></div>';
 }
-function renderOffice(){document.getElementById('officeStats').innerHTML=statsMarkup();document.getElementById('officeBody').innerHTML=jobs.map(j=>`<tr><td><b>${esc(j.jobNo)}</b><br><small>${esc(j.booked)}</small></td><td>${esc(j.customer)}<br><span class="reg">${esc(j.reg)}</span> ${esc(j.vehicle)}</td><td><span class="badge ${badgeClass(j.status)}">${esc(j.status)}</span>${isPartsAlert(j)?'<br><small style="color:#b71c1c;font-weight:800">Parts overdue</small>':''}</td><td>${esc(j.mechanic)}</td><td>â¬${Number(j.total).toFixed(2)}</td><td><input aria-label="Invoice paid" class="invoice-check" type="checkbox" ${j.paid?'checked':''} onchange="togglePaid(${j.id},this.checked)"></td><td><button class="small-btn" onclick="openEdit(${j.id})">Edit</button></td></tr>`).join('')}
-window.togglePaid=function(id,val){jobs.find(j=>j.id===id).paid=val;saveJobs(val?'Invoice marked paid':'Invoice marked unpaid')}
-function lookup(){const q=document.getElementById('customerLookup').value.trim().toLowerCase();const out=document.getElementById('customerResult');if(!q){out.innerHTML='<div class="empty">Enter a job number or registration.</div>';return}const j=jobs.find(x=>x.jobNo.toLowerCase()===q||x.reg.replace(/[\s-]/g,'').toLowerCase()===q.replace(/[\s-]/g,'').toLowerCase());if(!j){out.innerHTML='<div class="empty">No sample job found. Check the job number or registration.</div>';return}const stages=['Booked','In Progress','Ready for Collection','Collected'];let idx=j.status==='Waiting for Parts'?1:stages.indexOf(j.status);out.innerHTML=`<h3>${esc(j.service)}</h3><p><span class="reg">${esc(j.reg)}</span> &nbsp; <b>${esc(j.jobNo)}</b></p><div class="progress">${stages.map((s,i)=>`<span class="step ${i<=idx?'done':''}" title="${s}"></span>`).join('')}</div><p><span class="badge ${badgeClass(j.status)}">${esc(j.status)}</span></p>${isPartsAlert(j)?`<div class="alert-line">Parts have been on order for more than two days. Please contact the garage for an update.</div>`:''}<div class="meta"><div><b>Vehicle</b>${esc(j.vehicle)}</div><div><b>Booked date</b>${esc(j.booked)}</div><div><b>Work requested</b>${esc(j.service)}</div><div><b>Amount</b>â¬${Number(j.total).toFixed(2)}</div></div><p class="notes">Latest update: ${esc(j.notes)}</p><small>This is fictional sample information for the Case G demonstration.</small>`}
-function renderAll(){renderWorkshop();renderOffice()}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
-function openModal(j){document.getElementById('modalBackdrop').classList.add('open');document.getElementById('modalTitle').textContent=j?'Edit sample job':'Add sample job';const vals=j||{id:'',jobNo:`KG-${1000+jobs.length+1}`,reg:'',customer:'',vehicle:'',service:'',mechanic:'Unassigned',status:'Booked',total:'',notes:''};['Id','JobNo','Reg','Customer','Vehicle','Service','Mechanic','Status','Total','Notes'].forEach(k=>{const el=document.getElementById('f'+k);const prop=k.charAt(0).toLowerCase()+k.slice(1);el.value=vals[prop]??''})}
-window.openEdit=function(id){openModal(jobs.find(j=>j.id===id))}
-function closeModal(){document.getElementById('modalBackdrop').classList.remove('open');document.getElementById('jobForm').reset()}
-document.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav-btn,.view').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.getElementById(btn.dataset.view).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}));
-document.getElementById('workshopSearch').addEventListener('input',renderWorkshop);document.getElementById('statusFilter').addEventListener('change',renderWorkshop);document.getElementById('lookupBtn').addEventListener('click',lookup);document.getElementById('customerLookup').addEventListener('keydown',e=>{if(e.key==='Enter')lookup()});document.getElementById('addJob').addEventListener('click',()=>openModal());document.getElementById('cancelModal').addEventListener('click',closeModal);document.getElementById('modalBackdrop').addEventListener('click',e=>{if(e.target.id==='modalBackdrop')closeModal()});
-document.getElementById('jobForm').addEventListener('submit',e=>{e.preventDefault();const id=Number(document.getElementById('editId').value);const previous=jobs.find(j=>j.id===id);const status=document.getElementById('fStatus').value;const item={id:id||Date.now(),jobNo:document.getElementById('fJobNo').value.trim(),reg:document.getElementById('fReg').value.trim().toUpperCase(),customer:document.getElementById('fCustomer').value.trim(),vehicle:document.getElementById('fVehicle').value.trim(),service:document.getElementById('fService').value.trim(),mechanic:document.getElementById('fMechanic').value.trim(),status,total:Number(document.getElementById('fTotal').value),notes:document.getElementById('fNotes').value.trim(),booked:previous?.booked||new Date().toISOString().slice(0,10),partsSince:status==='Waiting for Parts'?(previous?.partsSince||new Date().toISOString().slice(0,10)):null,paid:previous?.paid||false};if(id)jobs=jobs.map(j=>j.id===id?item:j);else jobs.push(item);closeModal();saveJobs(id?'Sample job updated':'Sample job added')});
-document.getElementById('resetData').addEventListener('click',()=>{if(confirm('Reset all changes and restore the fictional sample jobs?')){jobs=structuredClone(sampleJobs);saveJobs('Sample data reset')}});
-document.getElementById('exportJobs').addEventListener('click',()=>{const fields=['jobNo','reg','customer','vehicle','service','status','mechanic','booked','partsSince','total','paid','notes'];const csv=[fields.join(','),...jobs.map(j=>fields.map(f=>'"'+String(j[f]??'').replaceAll('"','""')+'"').join(','))].join('\n');const blob=new Blob([csv],{type:'text/csv'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kehoes-garage-sample-jobs.csv';a.click();URL.revokeObjectURL(a.href);showToast('Sample jobs exported')});
+
+function workshopActions(job) {
+  if (job.status === 'Booked') return `<button class="big-btn" onclick="setStatus(${job.id},'In Progress')">Start job</button><button class="big-btn amber" onclick="setStatus(${job.id},'Waiting for Parts')">Wait for parts</button>`;
+  if (job.status === 'In Progress') return `<button class="big-btn green" onclick="setStatus(${job.id},'Ready for Collection')">Mark ready</button><button class="big-btn amber" onclick="setStatus(${job.id},'Waiting for Parts')">Wait for parts</button>`;
+  if (job.status === 'Waiting for Parts') return `<button class="big-btn" onclick="setStatus(${job.id},'In Progress')">Parts arrived</button><button class="big-btn green" onclick="setStatus(${job.id},'Ready for Collection')">Mark ready</button>`;
+  if (job.status === 'Ready for Collection') return `<button class="big-btn green" onclick="setStatus(${job.id},'Collected')">Mark collected</button><button class="big-btn grey" onclick="setStatus(${job.id},'In Progress')">Return to job</button>`;
+  return `<button class="big-btn grey" onclick="setStatus(${job.id},'In Progress')">Reopen job</button><button class="big-btn" onclick="openEdit(${job.id})">Edit details</button>`;
+}
+
+function jobCard(job) {
+  const waiting = daysWaiting(job);
+  const alert = isPartsAlert(job);
+  return '<article class="job-card ' + (alert ? 'overdue' : '') + '">' +
+    '<div class="job-head"><div><span class="job-no">' + esc(job.jobNo) + '</span><h3>' + esc(job.service) + '</h3><span class="reg">' + esc(job.reg) + '</span></div><span class="badge ' + badgeClass(job.status) + '">' + esc(job.status) + '</span></div>' +
+    (alert ? '<div class="alert-line">PARTS WAITING ' + waiting + ' DAYS - ACTION REQUIRED</div>' : '') +
+    '<div class="meta"><div><b>Customer</b>' + esc(job.customer) + '</div><div><b>Vehicle</b>' + esc(job.vehicle) + '</div><div><b>Mechanic</b>' + esc(job.mechanic) + '</div><div><b>Booked</b>' + esc(job.booked) + '</div></div>' +
+    '<p class="notes">' + esc(job.notes) + '</p><div class="actions">' + workshopActions(job) + '</div></article>';
+}
+
+function renderWorkshop() {
+  document.getElementById('stats').innerHTML = statsMarkup();
+  const query = document.getElementById('workshopSearch').value.trim().toLowerCase();
+  const filter = document.getElementById('statusFilter').value;
+  const list = jobs.filter(job => (!filter || job.status === filter) && (!query || [job.jobNo,job.reg,job.customer,job.vehicle,job.service].join(' ').toLowerCase().includes(query)));
+  document.getElementById('workshopJobs').innerHTML = list.length ? list.map(jobCard).join('') : '<div class="empty">No jobs match this search.</div>';
+}
+
+window.setStatus = function(id, status) {
+  const job = jobs.find(item => item.id === id);
+  if (!job) return;
+  job.status = status;
+  job.partsSince = status === 'Waiting for Parts' ? (job.partsSince || new Date().toISOString().slice(0,10)) : null;
+  saveJobs(job.jobNo + ' updated to ' + status);
+};
+
+function renderOffice() {
+  document.getElementById('officeStats').innerHTML = statsMarkup();
+  document.getElementById('officeBody').innerHTML = jobs.map(job => '<tr><td><b>' + esc(job.jobNo) + '</b><br><small>' + esc(job.booked) + '</small></td><td>' + esc(job.customer) + '<br><span class="reg">' + esc(job.reg) + '</span> ' + esc(job.vehicle) + '</td><td><span class="badge ' + badgeClass(job.status) + '">' + esc(job.status) + '</span>' + (isPartsAlert(job) ? '<br><small style="color:#b71c1c;font-weight:800">Parts overdue</small>' : '') + '</td><td>' + esc(job.mechanic) + '</td><td>EUR ' + Number(job.total).toFixed(2) + '</td><td><input aria-label="Invoice paid" class="invoice-check" type="checkbox" ' + (job.paid ? 'checked' : '') + ' onchange="togglePaid(' + job.id + ',this.checked)"></td><td><button class="small-btn" onclick="openEdit(' + job.id + ')">Edit</button></td></tr>').join('');
+}
+
+window.togglePaid = function(id, value) { const job = jobs.find(item => item.id === id); if (!job) return; job.paid = value; saveJobs(value ? 'Invoice marked paid' : 'Invoice marked unpaid'); };
+
+function lookup() {
+  const query = document.getElementById('customerLookup').value.trim().toLowerCase();
+  const output = document.getElementById('customerResult');
+  if (!query) { output.innerHTML = '<div class="empty">Enter a job number or registration.</div>'; return; }
+  const clean = value => value.replace(/[\s-]/g,'').toLowerCase();
+  const job = jobs.find(item => item.jobNo.toLowerCase() === query || clean(item.reg) === clean(query));
+  if (!job) { output.innerHTML = '<div class="empty">No sample job found. Check the job number or registration.</div>'; return; }
+  const stages = ['Booked','In Progress','Ready for Collection','Collected'];
+  const stageIndex = job.status === 'Waiting for Parts' ? 1 : stages.indexOf(job.status);
+  output.innerHTML = '<h3>' + esc(job.service) + '</h3><p><span class="reg">' + esc(job.reg) + '</span> &nbsp; <b>' + esc(job.jobNo) + '</b></p><div class="progress">' + stages.map((stage,index) => '<span class="step ' + (index <= stageIndex ? 'done' : '') + '" title="' + stage + '"></span>').join('') + '</div><p><span class="badge ' + badgeClass(job.status) + '">' + esc(job.status) + '</span></p>' + (isPartsAlert(job) ? '<div class="alert-line">Parts have been on order for more than two days. Please contact the garage for an update.</div>' : '') + '<div class="meta"><div><b>Vehicle</b>' + esc(job.vehicle) + '</div><div><b>Booked date</b>' + esc(job.booked) + '</div><div><b>Work requested</b>' + esc(job.service) + '</div><div><b>Amount</b>EUR ' + Number(job.total).toFixed(2) + '</div></div><p class="notes">Latest update: ' + esc(job.notes) + '</p><small>This is fictional sample information for the Case G demonstration.</small>';
+}
+
+function renderAll() { renderWorkshop(); renderOffice(); }
+function showToast(message) { const toast = document.getElementById('toast'); toast.textContent = message; toast.classList.add('show'); clearTimeout(window.toastTimer); window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200); }
+
+function openModal(job) {
+  document.getElementById('modalBackdrop').classList.add('open');
+  document.getElementById('modalTitle').textContent = job ? 'Edit sample job' : 'Add sample job';
+  const values = job || {id:'',jobNo:'KG-' + (1000 + jobs.length + 1),reg:'',customer:'',vehicle:'',service:'',mechanic:'Unassigned',status:'Booked',total:'',notes:''};
+  const fields = {editId:'id',fJobNo:'jobNo',fReg:'reg',fCustomer:'customer',fVehicle:'vehicle',fService:'service',fMechanic:'mechanic',fStatus:'status',fTotal:'total',fNotes:'notes'};
+  Object.keys(fields).forEach(id => document.getElementById(id).value = values[fields[id]] == null ? '' : values[fields[id]]);
+}
+
+window.openEdit = function(id) { openModal(jobs.find(job => job.id === id)); };
+function closeModal() { document.getElementById('modalBackdrop').classList.remove('open'); document.getElementById('jobForm').reset(); }
+
+document.querySelectorAll('.nav-btn').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('.nav-btn,.view').forEach(item => item.classList.remove('active'));
+  button.classList.add('active');
+  document.getElementById(button.dataset.view).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}));
+
+document.getElementById('workshopSearch').addEventListener('input', renderWorkshop);
+document.getElementById('statusFilter').addEventListener('change', renderWorkshop);
+document.getElementById('lookupBtn').addEventListener('click', lookup);
+document.getElementById('customerLookup').addEventListener('keydown', event => { if (event.key === 'Enter') lookup(); });
+document.getElementById('addJob').addEventListener('click', () => openModal());
+document.getElementById('cancelModal').addEventListener('click', closeModal);
+document.getElementById('modalBackdrop').addEventListener('click', event => { if (event.target.id === 'modalBackdrop') closeModal(); });
+
+document.getElementById('jobForm').addEventListener('submit', event => {
+  event.preventDefault();
+  const id = Number(document.getElementById('editId').value);
+  const previous = jobs.find(job => job.id === id);
+  const status = document.getElementById('fStatus').value;
+  const item = {
+    id: id || Date.now(),
+    jobNo: document.getElementById('fJobNo').value.trim(),
+    reg: document.getElementById('fReg').value.trim().toUpperCase(),
+    customer: document.getElementById('fCustomer').value.trim(),
+    vehicle: document.getElementById('fVehicle').value.trim(),
+    service: document.getElementById('fService').value.trim(),
+    mechanic: document.getElementById('fMechanic').value.trim(),
+    status: status,
+    total: Number(document.getElementById('fTotal').value),
+    notes: document.getElementById('fNotes').value.trim(),
+    booked: previous ? previous.booked : new Date().toISOString().slice(0,10),
+    partsSince: status === 'Waiting for Parts' ? ((previous && previous.partsSince) || new Date().toISOString().slice(0,10)) : null,
+    paid: previous ? previous.paid : false
+  };
+  jobs = id ? jobs.map(job => job.id === id ? item : job) : jobs.concat(item);
+  closeModal();
+  saveJobs(id ? 'Sample job updated' : 'Sample job added');
+});
+
+document.getElementById('resetData').addEventListener('click', () => {
+  if (confirm('Reset all changes and restore the fictional sample jobs?')) { jobs = cloneSamples(); saveJobs('Sample data reset'); }
+});
+
+document.getElementById('exportJobs').addEventListener('click', () => {
+  const fields = ['jobNo','reg','customer','vehicle','service','status','mechanic','booked','partsSince','total','paid','notes'];
+  const csv = [fields.join(',')].concat(jobs.map(job => fields.map(field => '"' + String(job[field] == null ? '' : job[field]).replace(/"/g,'""') + '"').join(','))).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'kehoes-garage-sample-jobs.csv';
+  link.click();
+  URL.revokeObjectURL(link.href);
+  showToast('Sample jobs exported');
+});
+
 renderAll();
 </script>
 </body>
